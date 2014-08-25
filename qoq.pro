@@ -2,18 +2,16 @@ TEMPLATE = app
 
 QT += qml quick widgets
 
+include(ocaml.pri)
+QMAKE_EXTRA_TARGETS += camltarget echotarget
+
 SOURCES += main.cpp \
     documenthandler.cpp \
     highlighter.cpp
 
 RESOURCES += qml.qrc
 
-# Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
-
-# Default rules for deployment.
-include(deployment.pri)
-
 HEADERS += \
     documenthandler.h \
     highlighter.h
+

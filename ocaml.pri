@@ -1,5 +1,5 @@
 camltarget.target = caml/code.a
-camltarget.commands = make -C caml/
+camltarget.commands = make -C ocaml/
 camltarget.depends = echotarget
 
 echotarget.commands = @echo Building camltarget

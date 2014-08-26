@@ -5,9 +5,11 @@
 #include <QtQuick/QQuickWindow>
 
 #include "documenthandler.h"
+#include "kamlo.h"
 
 int main(int argc, char *argv[])
 {
+    caml_main(argv);
     QApplication app(argc, argv);
 
     qmlRegisterType<DocumentHandler>("net.khertan.documenthandler", 1, 0, "DocumentHandler");

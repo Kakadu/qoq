@@ -1,4 +1,4 @@
-camltarget.target = caml/code.a
+camltarget.target = ocaml/code.a
 camltarget.commands = make -C ocaml/
 camltarget.depends = echotarget
 

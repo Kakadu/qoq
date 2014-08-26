@@ -1,8 +1,17 @@
-OUT=code.a
+OCAMLOPT=ocamlfind opt
+OUT=kamlo
 
-$(OUT):
-	ocamlc camlmain.ml -o $(OUT)
+.PHONY: all clean
+
+all: $(OUT).a
+
+$(OUT).a: camlcode.a
+	
+
+camlcode.a:
+	$(OCAMLOPT) -c camlmain.ml 
+	ocamlmklib -o $@ -I `ocamlc -where` -cclib `ocamlc -where`/libasmrun.a camlmain.cmx
 
 clean:
-	rm -fr $(OUT) *.cm[ioxa]
+	rm -fr $(OUT).a *.cm[ioxa]
 

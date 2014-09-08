@@ -1,5 +1,0 @@
-create kamlo.a
-addlib libasmrun.a
-addlib camlcode.a
-save
-end

@@ -20,7 +20,7 @@ HEADERS += \
     kamlo.h
 
 INCLUDEPATH += $$system(opam config var lib)/ocaml
-LIBS += -L$$system(opam config var lib)/ocaml
+#LIBS += -L$$system(opam config var lib)/ocaml
 
-TARGETDEPS += ocaml/code.a
-LIBS += -Locaml ocaml/code.a
+TARGETDEPS += ocaml/kamlo.a
+LIBS += ocaml/kamlo.a -ldl -lm

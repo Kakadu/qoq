@@ -2,25 +2,22 @@ OCAMLOPT=ocamlfind opt
 OCAMLC=ocamlfind c
 OCAMLLIBDIR=$(shell ocamlfind c -where)
 
-OUT=kamlo
+OUT=kamlo.a
 
 
 .PHONY: all clean
 
-all: $(OUT).a
-
-$(warning $(OCAMLLIBDIR) )
+all: kamlo.a
 
 libasmrun.a: $(OCAMLLIBDIR)/libasmrun.a
 	cp $< $@
 
-$(OUT).a: camlcode.a libasmrun.a
-	#libtool --mode=link cc -static -o kamlo.a camlcode.a libasmrun.a
-	ar -M < kamlo.mri
+kamlo.a: libasmrun.a kamlocode.o
+	ar q libasmrun.a kamlocode.o
+	mv libasmrun.a kamlo.a
 
-camlcode.a:
-	$(OCAMLOPT) -c camlmain.ml
-	ocamlmklib -o camlcode -I `ocamlc -where` -cclib `ocamlc -where`/libasmrun.a camlmain.cmx
+kamlocode.o: kamlomain.ml
+	$(OCAMLOPT) -output-obj kamlomain.ml -o kamlocode.o
 
 clean:
-	rm -fr $(OUT).a *.cm[ioxa] *.cmxa *.o
+	rm -fr $(OUT) *.cm[ioxa] *.cmxa *.o
